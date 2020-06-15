@@ -3,13 +3,15 @@ const usersController = require('./modules/controllers/usersController')
 
 const routes = Router()
 
-routes.get("/", usersController.index)
+routes.get("/users", usersController.index)
 
-routes.post("/", usersController.store)
+routes.get("/users/:n_id", usersController.find)
 
-routes.put("/", usersController.update)
+routes.post("/login", usersController.store)
 
-routes.delete("/", usersController.destroy)
+routes.put("/users/:n_id", usersController.update)
+
+routes.delete("/users/:n_id", usersController.destroy)
 
 
 

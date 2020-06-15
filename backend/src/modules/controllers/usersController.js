@@ -1,38 +1,73 @@
 const User = require('../User')
 const Data = require('../Data')
+require('../User')
 
 module.exports= {
     async index(req, resp) {
-        users = await User.find()
-        return resp.json(users)
+      users = await User.find()
+      return resp.json(users)
+    },
+
+    async find(req, resp) {
+      console.log("Searching for... " + req.params.n_id)
+      user = await User.findOne(req.params)
+
+      if (user){
+        return resp.status(200).json(user)
+      }
+      else {
+        return resp.status(404).json("User not found")
+      }
+
     },
 
     async store(req, resp) {
-        console.log(req.body)
-        const {name, avatar } = req.body
+      const {n_id, name, avatar_url } = req.body
 
+      user = await User.findOne({n_id})
+
+      if (user){
+        console.log("User "+n_id+" already exists")
+        return resp.status(200).json("User already exists")
+      }
+      else {
         user = await User.create({
+            n_id,
             name,
-            avatar,
+            avatar_url,
         })
-
-        // data = await Data.create({
-        // _id: user._id,
-        // route: [{
-        //     origin: {},
-        //     destiny: {},
-        //     hour:
-        // })
-
-        return resp.json(user)
+      console.log("User "+n_id+" was created")
+      return resp.status(200).json(user)
+      }
     },
 
     async update(req, resp) {
+      condition = {n_id: req.params.n_id}
+
+      user =  await User.findOneAndUpdate(condition, req.body)
+
+      if (user) {
+        console.log('User ' + req.params.n_id +  ' was updated')
+        return resp.status(200).json('User ' + req.params.n_id +  ' was updated')
+      }
+      else {
+        console.log('Error: User ' + req.params.n_id +  ' not found')
+        return resp.status(404).json("Error: User not found")
+      }
 
     },
 
     async destroy(req, resp) {
+      user = await User.findOneAndDelete(req.params)
 
+      if (user) {
+        console.log('User ' + req.params.n_id +  ' was deleted')
+        return resp.status(200).json('User ' + req.params.n_id +  ' was deleted')
+      }
+      else {
+        console.log('Error: User ' + req.params.n_id +  ' not found')
+        return resp.status(404).json("Error: User not found")
+      }
     },
 
 }

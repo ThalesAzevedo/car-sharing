@@ -2,8 +2,9 @@ const mongoose = require('mongoose')
 
 
 const UserSchema = new mongoose.Schema({
+    n_id: String,
     name: String,
-    avatar: String,
+    avatar_url: String,
 
 })
 
