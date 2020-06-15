@@ -9,13 +9,11 @@ module.exports= {
 
     async store(req, resp) {
         console.log(req.body)
-        const {name, birthday, username, password } = req.body
-        
+        const {name, avatar } = req.body
+
         user = await User.create({
             name,
-            birthday,
-            username,
-            password,
+            avatar,
         })
 
         // data = await Data.create({
@@ -30,11 +28,11 @@ module.exports= {
     },
 
     async update(req, resp) {
-        
+
     },
 
     async destroy(req, resp) {
-        
+
     },
 
 }

@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/main.js",
@@ -10,10 +9,20 @@
   "author": "Thales Azevedo",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.10"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
-  }
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThalesAzevedo/car-sharing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ThalesAzevedo/car-sharing/issues"
+  },
+  "homepage": "https://github.com/ThalesAzevedo/car-sharing#readme",
+  "description": ""
 }
