@@ -1,3 +1,6 @@
+const axios = require('axios')
+const qs = require('querystring')
+
 const User = require('../User')
 //const Data = require('../Data')
 require('../User')
@@ -22,6 +25,38 @@ module.exports= {
   },
 
   async store(req, resp) {
+    const {username, password} = req.body
+
+    const requestBody = {
+      logintoken: 'PyzJFnm1fCiWPtuW8mvrq9qIMhpieDue',
+      username: '',
+      password: '',
+    }
+
+    const options = {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      data: qs.stringify(requestBody),
+      url: 'https://unifeso.mrooms.net/login/index.php',
+    }
+
+    async function userValidation(){
+      console.log('Entrou')
+      const validation = await axios.post(options)
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+      console.log(validation)
+      return
+    }
+
+    userValidation
+    return
+
     const {n_id, name, avatar_url } = req.body
 
     const user = await User.findOne({n_id})
