@@ -39,6 +39,7 @@ build/Release
 
 # Dependency directories
 backend/node_modules/
+mobile/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -102,3 +103,20 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+#mobile folder
+mobile/node_modules/**/*
+mobile/.expo/*
+mobile/npm-debug.*
+mobile/*.jks
+mobile/*.p8
+mobile/*.p12
+mobile/*.key
+mobile/*.mobileprovision
+mobile/*.orig.*
+mobile/web-build/
+mobile/web-report/
+
+# macOS
+.DS_Store
